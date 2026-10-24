@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#142f3d">
+<title>KAUSHALYA — Local Skills, Local Livelihoods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#142f3d;--orange:#ff9f3f;--green:#a8d5a2;--cream:#fff9ef;--light:#ffd6a8;--muted:#65747a;--line:#e8e9e6;--white:#fff;--shadow:0 12px 35px rgba(20,47,61,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:var(--cream);color:var(--dark);line-height:1.5}
+button,input,select{font:inherit}button{cursor:pointer}
+.header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px max(4%,calc((100% - 1100px)/2));background:rgba(255,249,239,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.logo{font-family:Poppins,sans-serif;font-size:20px;font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:9px}
+.logo-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:var(--orange);font-size:20px}
+.lang-buttons{display:flex;gap:5px}.lang-btn{border:1px solid #d9dedb;background:white;border-radius:20px;padding:7px 10px;font-size:12px;font-weight:700}.lang-btn.active{background:var(--dark);color:white}
+.page{display:none;min-height:calc(100vh - 65px)}.page.active{display:block}
+.container{width:min(1080px,92%);margin:0 auto}
+.hero{padding:60px 0 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#ffe4c6 0,transparent 62%)}
+.eyebrow{display:inline-block;background:#fff;border:1px solid #f4d8ba;padding:6px 12px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1px;color:#81501f}
+h1,h2,h3{font-family:Poppins,Inter,sans-serif;line-height:1.2}h1{font-size:clamp(34px,6vw,58px);margin:18px 0 12px}h1 span{color:#e77f20}.hero p{max-width:620px;margin:0 auto;color:#53646a}
+.hero-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:800;transition:transform .15s,opacity .15s}.btn:hover{transform:translateY(-1px)}.btn-dark{background:var(--dark);color:white}.btn-orange{background:var(--orange);color:var(--dark)}.btn-green{background:#398b56;color:white}.btn-outline{background:white;color:var(--dark);border:1px solid #dce1dd}.btn-full{width:100%}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:22px 0 45px}.feature{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.feature .icon{font-size:27px}.feature h3{font-size:16px;margin:8px 0}.feature p{font-size:13px;color:var(--muted)}
+.topbar{display:flex;align-items:center;gap:12px;padding:18px 0}.back{width:38px;height:38px;border:1px solid var(--line);background:white;border-radius:50%;font-size:20px}
+.section-title{margin:10px 0 20px}.section-title p{color:var(--muted);font-size:14px;margin-top:5px}
+.role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;padding:10px 0 45px}.role-card{border-radius:22px;padding:26px;border:1px solid #eadfce}.role-card.worker{background:#ffead5}.role-card.customer{background:#e4f2e0}.role-card .big-icon{font-size:38px}.role-card h2{margin:12px 0 8px}.role-card p{font-size:14px;margin-bottom:16px}.role-card ul{list-style:none;font-size:13px;margin:0 0 20px}.role-card li{margin:7px 0}
+.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 0 22px}.category{background:white;border:2px solid var(--line);border-radius:16px;padding:18px;text-align:left}.category.selected{border-color:var(--orange);background:#fff4e7}.category b{display:block;margin:6px 0}.category small{color:var(--muted)}
+.form{background:white;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;padding:22px;margin:10px auto 36px;max-width:680px}.form h2{font-size:22px;margin-bottom:7px}.help{font-size:13px;color:var(--muted);margin-bottom:16px}.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid #d8dfdc;border-radius:10px;padding:12px;background:white;color:var(--dark);min-height:44px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{background:#eef8ec;border:1px solid #cce7c6;border-radius:10px;padding:10px;font-size:12px;margin:12px 0}.warning{background:#fff5df;border:1px solid #f0d9a5;border-radius:10px;padding:10px;font-size:12px;margin:12px 0}
+.upload{border:2px dashed #c7d0cc;background:#fafcf9;border-radius:12px;padding:14px;text-align:center}.upload input{width:100%;margin-top:8px}.preview{max-width:100%;max-height:180px;display:none;margin:10px auto 0;border-radius:8px}.otp{display:flex;justify-content:center;gap:7px;margin:18px 0}.otp input{width:42px;height:48px;text-align:center;font-size:20px;font-weight:800;border:2px solid #d8dfdc;border-radius:9px}
+.searchbar{display:flex;gap:8px;margin:12px 0}.searchbar input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:12px;background:white}.filters{background:white;border:1px solid var(--line);padding:14px;border-radius:14px;margin:14px 0}.filter-row{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:6px 0}.chip{border:1px solid #dce2de;border-radius:20px;background:white;padding:7px 11px;font-size:12px;font-weight:700}.chip.active{background:var(--dark);color:white;border-color:var(--dark)}
+.results-head{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin:16px 0}.workers{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding-bottom:38px}.wcard{background:white;border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:0 5px 16px rgba(20,47,61,.04)}.wtop{display:flex;gap:12px;align-items:center}.avatar{width:58px;height:58px;flex:0 0 58px;border-radius:15px;display:grid;place-items:center;background:#ffe4c5;font-size:26px}.wcard h3{font-size:16px}.skill{font-size:12px;color:#34754c;font-weight:700;margin-top:3px}.meta{font-size:12px;color:var(--muted);margin-top:6px}.price-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:15px}.price{font-weight:800}.empty{grid-column:1/-1;background:white;border-radius:16px;padding:28px;text-align:center;color:var(--muted)}
+.modal{display:none;position:fixed;inset:0;background:#142f3dbb;z-index:50;align-items:flex-end;justify-content:center;padding:12px}.modal.show{display:flex}.modalbox{background:white;border-radius:22px 22px 16px 16px;width:min(560px,100%);max-height:90vh;overflow:auto;padding:22px}.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.close{border:0;background:#f1f4f1;border-radius:50%;width:34px;height:34px;font-size:22px}.detail{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13px}.detail span{color:var(--muted)}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+.success{text-align:center;padding:42px 0 65px}.success-icon{width:78px;height:78px;border-radius:50%;background:#dff3dc;display:grid;place-items:center;font-size:38px;margin:0 auto 18px}.success p{color:var(--muted);max-width:500px;margin:10px auto 22px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:18px;border-top:1px solid var(--line)}
+@media(max-width:650px){.header{padding:11px 4%}.logo{font-size:17px}.lang-btn{padding:6px 8px;font-size:11px}.hero{padding:42px 0 25px}.features{grid-template-columns:1fr;padding-bottom:30px}.feature{display:flex;gap:12px;align-items:flex-start}.feature .icon{font-size:24px}.role-grid,.workers{grid-template-columns:1fr}.category-grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.form{padding:17px}.role-card{padding:21px}.results-head{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="header" id="siteHeader">
+  <div class="logo"><span class="logo-mark">✦</span> KAUSHALYA</div>
+  <div class="lang-buttons" aria-label="Choose language">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">English</button>
+    <button class="lang-btn" data-lang="mr" onclick="setLang('mr')">मराठी</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLang('hi')">हिन्दी</button>
+  </div>
+</header>
+
+<main>
+<section class="page active" id="p-home">
+  <div class="hero"><div class="container">
+    <span class="eyebrow">PRAGYAN HACKATHON · TRACK 4-03</span>
+    <h1>Skills create opportunities.<br><span>Kaushalya connects them.</span></h1>
+    <p>Discover trusted local talent, help skilled people find work, and support livelihoods in your community.</p>
+    <div class="hero-actions"><button class="btn btn-dark" onclick="go('who')">Get Started →</button><button class="btn btn-outline" onclick="go('cskill')">Find Local Workers</button></div>
+  </div></div>
+  <div class="container"><div class="features">
+    <article class="feature"><div class="icon">🧰</div><div><h3>Show your skills</h3><p>Workers can create a profile, describe their services, and share a short skill video.</p></div></article>
+    <article class="feature"><div class="icon">📍</div><div><h3>Find talent nearby</h3><p>Customers can search by skill and filter profiles by distance and availability.</p></div></article>
+    <article class="feature"><div class="icon">🤝</div><div><h3>Connect directly</h3><p>Contact workers by phone or WhatsApp to discuss the work and price.</p></div></article>
+  </div></div>
+</section>
+
+<section class="page" id="p-who">
+  <div class="container"><div class="topbar"><button class="back" onclick="back()">←</button><div class="section-title"><h2>How would you like to use Kaushalya?</h2><p>Choose an option to continue.</p></div></div>
+  <div class="role-grid">
+    <article class="role-card worker"><div class="big-icon">🧑‍🔧</div><h2>I am a Worker</h2><p>Show your talent and help local customers discover your services.</p><ul><li>✓ Create your skill profile</li><li>✓ Set your expected price</li><li>✓ Share your availability</li></ul><button class="btn btn-orange btn-full" onclick="go('wcat')">Register as Worker →</button></article>
+    <article class="role-card customer"><div class="big-icon">🔎</div><h2>I am a Customer</h2><p>Find local people for everyday services and skilled work.</p><ul><li>✓ Search by skill</li><li>✓ Filter by distance</li><li>✓ Contact workers directly</li></ul><button class="btn btn-green btn-full" onclick="go('cskill')">Find a Worker →</button></article>
+  </div></div>
+</section>
+
+<section class="page" id="p-wcat">
+  <div class="container"><div class="topbar"><button class="back" onclick="back()">←</button><div class="section-title"><h2>Choose your worker category</h2><p>Select the category that best describes you.</p></div></div>
+  <div class="category-grid">
+    <button class="category selected" data-category="Women" onclick="chooseCategory(this)"><span>👩‍🍳</span><b>Women</b><small>Mehendi, tailoring, cooking, beauty</small></button>
+    <button class="category" data-category="Rural Youth" onclick="chooseCategory(this)"><span>🛠️</span><b>Rural Youth</b><small>Tally, electrician, mobile repair</small></button>
+    <button class="category" data-category="Disabled" onclick="chooseCategory(this)"><span>🏡</span><b>Work from home</b><small>Flexible and home-based services</small></button>
+  </div>
+  <div style="max-width:680px;margin:0 auto 35px"><button class="btn btn-dark btn-full" onclick="go('wlogin')">Continue to Registration →</button></div></div>
+</section>
+
+<section class="page" id="p-wlogin">
+  <div class="container"><div class="topbar"><button class="back" onclick="back()">←</button><div class="section-title"><h2>Worker sign-in</h2><p>Enter a mobile number to continue with this demo.</p></div></div>
+  <div class="form"><h2>Mobile number</h2><p class="help">This prototype uses a demo OTP. It does not send a real SMS.</p>
+    <div class="field"><label for="loginMob">Mobile number *</label><input id="loginMob" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div>
+    <button class="btn btn-dark btn-full" onclick="sendOtp()">Generate Demo OTP →</button>
+  </div></div>
+</section>
+
+<section class="page" id="p-otp">
+  <div class="container"><div class="topbar"><button class="back" onclick="back()">←</button><div class="section-title"><h2>Verify demo OTP</h2><p>Enter the six-digit code shown below.</p></div></div>
+  <div class="form"><div class="warning">Demo only: no SMS is sent. Use the code displayed here to test the registration flow.</div><p>Demo OTP: <strong id="otpShow">123456</strong></p>
+    <div class="otp" aria-label="Six digit OTP"><input id="o1" maxlength="1" inputmode="numeric"><input id="o2" maxlength="1" inputmode="numeric"><input id="o3" maxlength="1" inputmode="numeric"><input id="o4" maxlength="1" inputmode="numeric"><input id="o5" maxlength="1" inputmode="numeric"><input id="o6" maxlength="1" inputmode="numeric"></div>
+    <button class="btn btn-dark btn-full" onclick="checkOtp()">Verify & Continue →</button>
+  </div></div>
+</section>
+
+<section class="page" id="p-wform">
+  <div class="container"><div class="topbar"><button class="back" onclick="back()">←</button><div class="section-title"><h2>Create your worker profile</h2><p>Fields marked * are required.</p></div></div>
+  <form class="form" id="workerForm" onsubmit="finalSubmit(event)">
+    <div class="notice">Mobile number verified for this demo: <strong id="verifiedMob"></strong></div>
+    <div class="field"><label for="fName">Full name *</label><input id="fName" required placeholder="Your full name"></div>
+    <div class="field"><label for="fAddr">Area / full address *</label><input id="fAddr" required placeholder="Area, town or locality"></div>
+    <div class="two"><div class="field"><label for="fSkill">Skill / service *</label><select id="fSkill" required><option>Mehendi Artist</option><option>Cook / Faral Specialist</option><option>Tailoring</option><option>Cleaning & Home Help</option><option>Beauty / Pedicure Expert</option><option>Tally Operator</option><option>Caregiver / Aya</option><option>Tuition - Maths/Science</option><option>Mobile Repair</option><option>Electrician</option></select></div>
+    <div class="field"><label for="fDist">Approx. service distance *</label><select id="fDist"><option value="0.5">0.5 km</option><option value="1">1 km</option><option value="1.2" selected>1.2 km</option><option value="2">2 km</option><option value="3">3 km</option><option value="5">5 km</option><option value="10">10 km</option></select></div></div>
+    <div class="two"><div class="field"><label for="fRent">Expected price *</label><input id="fRent" required placeholder="e.g. ₹300 per day"></div>
+    <div class="field"><label for="fAvail">Availability *</label><select id="fAvail"><option>Available Today</option><option>Available Tomorrow</option><option>Available This Week</option><option>Work From Home - Anytime</option><option>Weekends Only</option><option>On Festival Only</option></select></div></div>
+    <div class="field"><label for="fWa">WhatsApp number (optional)</label><input id="fWa" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit WhatsApp number"></div>
+    <div class="field"><label for="fVideo">Short skill video (optional)</label><div class="upload">Choose a video to demonstrate your skill<input id="fVideo" type="file" accept="video/*"><video id="vPrev" class="preview" controls></video></div><small class="help">For this prototype, the video is previewed locally and is not uploaded to a server.</small></div>
+    <button class="btn btn-dark btn-full" type="submit">Save Worker Profile →</button>
+  </form></div>
+</section>
+
+<section class="page" id="p-success">
+  <div class="container success"><div class="success-icon">✓</div><h2>Profile saved!</h2><p id="successText">Your demo worker profile has been saved in this browser and can appear in customer search on this device.</p><button class="btn btn-dark" onclick="go('cskill')">View Customer Search →</button> <button class="btn btn-outline" onclick="go('home')">Go to Home</button></div>
+</section>
+
+<section class="page" id="p-cskill">
+  <div class="container"><div class="topbar"><button class="back" onclick="back()">←</button><div class="section-title"><h2>Find local workers</h2><p>Search demo profiles or profiles registered on this device.</p></div></div>
+  <div class="searchbar"><input id="search" placeholder="Try Mehendi, Cook, Tally..." oninput="render()"><button class="btn btn-dark" onclick="render()">Search</button></div>
+  <div class="filters">
+    <div class="filter-row"><strong style="font-size:12px">Distance:</strong><button class="chip active" data-km="100" onclick="setKm(100,this)">All</button><button class="chip" data-km="1" onclick="setKm(1,this)">1 km</button><button class="chip" data-km="2" onclick="setKm(2,this)">2 km</button><button class="chip" data-km="5" onclick="setKm(5,this)">5 km</button><button class="chip" data-km="10" onclick="setKm(10,this)">10 km</button></div>
+    <div class="filter-row"><strong style="font-size:12px">Skill:</strong><button class="chip active" data-skill="all" onclick="setSkill('all',this)">All</button><button class="chip" data-skill="Mehendi" onclick="setSkill('Mehendi',this)">Mehendi</button><button class="chip" data-skill="Cook" onclick="setSkill('Cook',this)">Cook</button><button class="chip" data-skill="Cleaning" onclick="setSkill('Cleaning',this)">Cleaning</button><button class="chip" data-skill="Beauty" onclick="setSkill('Beauty',this)">Beauty</button><button class="chip" data-skill="Tally" onclick="setSkill('Tally',this)">Tally</button><button class="chip" data-skill="Electrician" onclick="setSkill('Electrician',this)">Electrician</button></div>
+  </div>
+  <div class="results-head"><span id="rc">0 workers found</span><span>Sample data · nearest first</span></div>
+  <div class="workers" id="grid"></div>
+  </div>
+</section>
+</main>
+
+<div class="modal" id="wModal" onclick="if(event.target===this)closeW()"><div class="modalbox">
+  <div class="modal-head"><div><h2 id="wName">Worker details</h2><div class="skill" id="wSkill"></div></div><button class="close" onclick="closeW()" aria-label="Close">×</button></div>
+  <div id="wDet" style="margin-top:12px"></div>
+  <div class="warning">Kaushalya is a prototype. Worker profiles and contact details may be sample data. Confirm identity, price and service details before arranging work or making any payment.</div>
+  <div class="modal-actions"><button class="btn btn-green" onclick="waBook()">WhatsApp</button><button class="btn btn-dark" onclick="callW()">Call worker</button></div>
+  <button class="btn btn-outline btn-full" style="margin-top:8px" onclick="closeW()">Close details</button>
+</div></div>
+<footer class="footer">KAUSHALYA · Local skills · Local livelihoods · Dignity for all<br>Hackathon prototype — sample data only; no backend or real OTP/payment integration.</footer>
+
+<script>
+const DEMO_OTP = '123456';
+let historyStack = [];
+let selectedCategory = 'Women';
+let verifiedMob = '';
+let currentWorker = null;
+let kmFilter = 100;
+let skillFilter = 'all';
+let videoUrl = '';
+const sampleWorkers = [
+ {id:'demo-1',name:'Sunita Pawar',skill:'Mehendi Artist',rent:'₹300 per hand',avail:'Available Today',mob:'9876500011',wa:'9876500011',address:'Kopargaon',distKm:1.2,emoji:'🌿',sample:true},
+ {id:'demo-2',name:'Sangeeta Mali',skill:'Cook / Faral Specialist',rent:'₹400 per day',avail:'Available Tomorrow',mob:'9876500012',wa:'9876500012',address:'Kopargaon',distKm:1.5,emoji:'🍲',sample:true},
+ {id:'demo-3',name:'Laxmi Kale',skill:'Cleaning & Home Help',rent:'₹200 per day',avail:'Available Today',mob:'9876500013',wa:'9876500013',address:'Kopargaon',distKm:.8,emoji:'🧹',sample:true},
+ {id:'demo-4',name:'Priya Rathod',skill:'Beauty / Pedicure Expert',rent:'₹250 per session',avail:'Work From Home',mob:'9876500014',wa:'9876500014',address:'Kopargaon',distKm:2,emoji:'💅',sample:true},
+ {id:'demo-5',name:'Usha Kale',skill:'Caregiver / Aya',rent:'₹350 per day',avail:'Available Today',mob:'9876500015',wa:'9876500015',address:'Kopargaon',distKm:.5,emoji:'💚',sample:true},
+ {id:'demo-6',name:'Ravi Shinde',skill:'Tally Operator',rent:'₹500 per day',avail:'Available This Week',mob:'9876500016',wa:'9876500016',address:'Kopargaon',distKm:4.5,emoji:'💻',sample:true},
+ {id:'demo-7',name:'Amit Jadhav',skill:'Electrician',rent:'Price by discussion',avail:'Available Today',mob:'9876500017',wa:'9876500017',address:'Kopargaon',distKm:3,emoji:'🔧',sample:true}
+];
+function go(id){const active=document.querySelector('.page.active');if(active&&active.id!=='p-'+id)historyStack.push(active.id.slice(2));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const target=document.getElementById('p-'+id);if(target)target.classList.add('active');document.getElementById('siteHeader').style.display=id==='home'?'flex':'none';window.scrollTo({top:0,behavior:'instant'});if(id==='cskill')render();}
+function back(){const previous=historyStack.pop();if(previous){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p-'+previous).classList.add('active');document.getElementById('siteHeader').style.display=previous==='home'?'flex':'none';window.scrollTo(0,0);}else go('home');}
+function setLang(lang){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));if(lang!=='en')alert(lang==='mr'?'मराठी निवडले आहे. या प्रोटोटाइपमध्ये काही मजकूर इंग्रजीत राहू शकतो.':'हिन्दी चुनी गई है। इस प्रोटोटाइप में कुछ टेक्स्ट अंग्रेज़ी में रह सकता है।');}
+function chooseCategory(btn){document.querySelectorAll('.category').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedCategory=btn.dataset.category;}
+function sendOtp(){const mob=document.getElementById('loginMob').value.replace(/\D/g,'');if(!/^\d{10}$/.test(mob)){alert('Please enter a valid 10-digit mobile number.');return;}verifiedMob=mob;document.getElementById('otpShow').textContent=DEMO_OTP;['o1','o2','o3','o4','o5','o6'].forEach((id,i)=>document.getElementById(id).value=DEMO_OTP[i]);document.getElementById('verifiedMob').textContent='+91 '+mob;go('otp');}
+document.querySelectorAll('.otp input').forEach((input,i,all)=>input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'').slice(-1);if(input.value&&all[i+1])all[i+1].focus();}));
+function checkOtp(){const entered=['o1','o2','o3','o4','o5','o6'].map(id=>document.getElementById(id).value).join('');if(entered!==DEMO_OTP){alert('Incorrect demo OTP. Please use '+DEMO_OTP+'.');return;}document.getElementById('verifiedMob').textContent='+91 '+verifiedMob;go('wform');}
+document.getElementById('fVideo').addEventListener('change',function(){const file=this.files&&this.files[0],preview=document.getElementById('vPrev');if(videoUrl)URL.revokeObjectURL(videoUrl);if(file){videoUrl=URL.createObjectURL(file);preview.src=videoUrl;preview.style.display='block';}else{preview.removeAttribute('src');preview.style.display='none';}});
+function getRegistered(){try{return JSON.parse(localStorage.getItem('kaush_workers')||'[]');}catch(e){return [];}}
+function finalSubmit(event){event.preventDefault();const name=document.getElementById('fName').value.trim(),address=document.getElementById('fAddr').value.trim(),skill=document.getElementById('fSkill').value,rent=document.getElementById('fRent').value.trim(),wa=document.getElementById('fWa').value.replace(/\D/g,'')||verifiedMob,dist=Number(document.getElementById('fDist').value)||1.2,avail=document.getElementById('fAvail').value;if(!name||!address||!rent){alert('Please complete all required fields.');return;}const worker={id:'user-'+Date.now(),name,skill,rent,avail,mob:verifiedMob,wa,address,distKm:dist,emoji:'🙋',sample:false,category:selectedCategory};try{const all=getRegistered();all.unshift(worker);localStorage.setItem('kaush_workers',JSON.stringify(all));}catch(e){alert('Could not save the profile in this browser. Please check device storage.');return;}document.getElementById('successText').textContent='Your demo profile has been saved on this device. It can appear in customer search in this same browser; it is not published online.';document.getElementById('workerForm').reset();document.getElementById('vPrev').style.display='none';go('success');}
+function getAllWorkers(){return [...getRegistered(),...sampleWorkers];}
+function setKm(k,btn){kmFilter=k;document.querySelectorAll('[data-km]').forEach(b=>b.classList.toggle('active',b===btn));render();}
+function setSkill(skill,btn){skillFilter=skill;document.querySelectorAll('[data-skill]').forEach(b=>b.classList.toggle('active',b===btn));render();}
+function render(){const grid=document.getElementById('grid');if(!grid)return;const query=(document.getElementById('search').value||'').trim().toLowerCase();let list=getAllWorkers().filter(w=>(kmFilter>=100||Number(w.distKm)<=kmFilter)&&(skillFilter==='all'||w.skill.toLowerCase().includes(skillFilter.toLowerCase()))&&(!query||w.name.toLowerCase().includes(query)||w.skill.toLowerCase().includes(query)||w.address.toLowerCase().includes(query))).sort((a,b)=>Number(a.distKm)-Number(b.distKm));document.getElementById('rc').textContent=list.length+' worker'+(list.length===1?'':'s')+' found';grid.innerHTML='';if(!list.length){grid.innerHTML='<div class="empty"><h3>No workers found</h3><p style="margin-top:6px">Try another skill or increase the distance filter.</p></div>';return;}list.forEach(w=>{const card=document.createElement('article');card.className='wcard';card.innerHTML='<div class="wtop"><div class="avatar">'+escapeHtml(w.emoji||'🧰')+'</div><div><h3>'+escapeHtml(w.name)+'</h3><div class="skill">'+escapeHtml(w.skill)+'</div><div class="meta">'+escapeHtml(w.address)+' · '+Number(w.distKm).toFixed(1)+' km</div></div></div><div class="meta">'+escapeHtml(w.avail)+(w.sample?' · Sample profile':' · Saved on this device')+'</div><div class="price-row"><span class="price">'+escapeHtml(w.rent)+'</span><button class="btn btn-dark" style="padding:8px 11px;font-size:12px">View details</button></div>';card.querySelector('button').addEventListener('click',()=>openW(w.id));grid.appendChild(card);});}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function openW(id){currentWorker=getAllWorkers().find(w=>w.id===id);if(!currentWorker)return;const w=currentWorker;document.getElementById('wName').textContent=w.name;document.getElementById('wSkill').textContent=w.skill;const rows=[['Name',w.name],['Address / area',w.address],['Skill',w.skill],['Approx. distance',Number(w.distKm).toFixed(1)+' km'],['Expected price',w.rent],['Availability',w.avail],['Profile type',w.sample?'Sample data':'Saved on this device']];document.getElementById('wDet').innerHTML=rows.map(([k,v])=>'<div class="detail"><span>'+escapeHtml(k)+'</span><strong>'+escapeHtml(v)+'</strong></div>').join('');document.getElementById('wModal').classList.add('show');}
+function closeW(){document.getElementById('wModal').classList.remove('show');}
+function validPhone(phone){return /^\d{10}$/.test(String(phone||'').replace(/\D/g,''));}
+function waBook(){if(!currentWorker)return;const phone=String(currentWorker.wa||currentWorker.mob||'').replace(/\D/g,'');if(!validPhone(phone)){alert('This worker has no valid WhatsApp number in the demo profile.');return;}const msg='Hello '+currentWorker.name+', I found your profile on Kaushalya. I would like to ask about '+currentWorker.skill+'. Expected price: '+currentWorker.rent+'. Please let me know your availability.';window.open('https://wa.me/91'+phone+'?text='+encodeURIComponent(msg),'_blank','noopener');}
+function callW(){if(!currentWorker)return;const phone=String(currentWorker.mob||'').replace(/\D/g,'');if(!validPhone(phone)){alert('No valid phone number is available.');return;}if(confirm('Call '+currentWorker.name+' at +91 '+phone+'?'))window.location.href='tel:+91'+phone;}
+setLang('en');render();
+</script>
+</body>
+</html>
